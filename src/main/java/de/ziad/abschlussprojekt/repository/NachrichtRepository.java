@@ -1,0 +1,19 @@
+
+package de.ziad.abschlussprojekt.repository;
+
+import de.ziad.abschlussprojekt.model.Anzeige;
+import de.ziad.abschlussprojekt.model.Nachricht;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+
+/**
+ *
+ * @author User
+ */
+public interface NachrichtRepository extends JpaRepository<Nachricht, Long> {
+    
+    
+    List<Nachricht> findByAnzeige(Anzeige anzeige) ;
+    
+}

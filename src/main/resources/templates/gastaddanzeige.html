@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        
+        <div>
+            <nav>
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/gast/myanzeigen">MyAnzeigen</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/gast/welcome_gast">Anzeigen</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/gast/options">Options</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inbox</a>
+                    </li>
+                    <li class="nav-item">
+<!--                        <a class="nav-link" href="index">Logout</a>-->
+                       <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div>
+        
+            <form th:action="@{/gast/myanzeigen/gastaddanzeige}" id="bookForm" method="post" th:object="${anzeige}">
+                <input type="hidden" class="form-control" th:field="*{id}"  name="id" id="id"   />
+                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="*{title}" name="title" id="title" placeholder="title"/>
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="*{body}" name="body" id="body" placeholder="body"/>
+                </div>
+                <!--                        <div class="mb-3">
+                                            <input type="text" class="form-control" th:field="*{erstellungsdatum}" name="erstellungsdatum" id="erstellungsdatum" />
+                                        </div>-->
+                 <div class="mb-3">
+                            <select class="form-control" th:field="*{kategorie.id}"  >
+                                <option value="">Kein</option>
+                                <optgroup th:each="kat : ${kategorienList}"  th:label="${kat.name}">
+                                    <option th:each="sub:${kat.children}" th:value="${sub.id}" th:text="${sub.name}"></option>
+                                </optgroup>
+                                
+                            </select>
+                            
+                        </div>
+
+<!--                <div class="mb-3">
+                    <input type="text" class="form-control" th:field="*{kategorie}" name="kategorie" placeholder="kategorie" />
+                </div>-->
+                <!--                        <div class="mb-3">
+                                            <input type="text" class="form-control" th:field="*{status}" name="status" id="status" placeholder="status"/>
+                                        </div>-->
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset" class="btn btn-danger">Clear</button>
+            </form>
+            
+            
+        </div>
+    </body>
+</html>

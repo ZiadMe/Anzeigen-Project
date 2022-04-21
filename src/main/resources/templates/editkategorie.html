@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        
+        <div>
+        
+             <form th:action="@{/admin/ktadmin/editkategorie}" id="bookForm" method="post" th:object="${kategorie}">
+                        <input type="hidden" class="form-control" th:field="*{id}"  name="id" id="id"   />
+                        <div class="mb-3">
+                            <input type="text" class="form-control" th:field="*{name}" name="name" id="title" placeholder="name" readonly="true"/>
+                        </div>
+                       
+                       <div class="mb-3">
+                            <input type="checkbox" name="aktive" th:field="*{aktive}" th:checked="${kategorie.aktive}" />
+                        </div>
+<!--                        <div class="mb-3">
+                            <input type="text" class="form-control" th:field="*{erstellungsdatum}" name="erstellungsdatum" id="erstellungsdatum" readonly="true" />
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" th:field="*{anbieter.userName}" name="anbieter" id="anbieter" placeholder="anbieter" readonly="true"/>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" th:field="*{postalCode}" name="postalCode" id="postalCode" placeholder="postalCode" readonly="true"/>
+                        </div><!---->
+                       
+<!--                        <div class="mb-3">
+                            <input type="text" class="form-control" th:field="*{status}" name="status" id="status" placeholder="status"/>
+                        </div>-->
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="reset" class="btn btn-danger">Clear</button>
+                    </form>
+            
+            
+        </div>
+    </body>
+</html>
